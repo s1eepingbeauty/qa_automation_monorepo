@@ -16,10 +16,10 @@ export default defineConfig({
   /* Де шукати .spec.js файли. Рідко — папка tests/ є стандартною. */
   testDir: './tests',
   /* Максимальний час виконання одного тесту (мс) */
-  timeout: 30 * 1000,
+  /*timeout: 30 * 1000,
   expect: {
     timeout: 5000
-  },
+  },*/
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -33,7 +33,10 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'http://localhost:5173',
+    /* Встановити змінну process.env.BASE_URL можна ввівши команду в терміналі: $env:BASE_URL = "http://localhost:5173"
+    Перевірити, чи вона встановлена: echo $env:BASE_URL    
+    Видалити змінну: Remove-Item Env:BASE_URL */
+    baseURL: process.env.BASE_URL || 'http://localhost:5173',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
